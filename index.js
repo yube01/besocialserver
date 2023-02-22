@@ -1,14 +1,39 @@
 import  Express  from "express"
-import connectDb from "./mongodb/connect";
-import dotenv from "dotenv"
+import mongoose from "mongoose";
 
+import dotenv from "dotenv"
+import userRouter from "./routes/users.js"
 
 const app = Express();
 
 dotenv.config();
 
 
+
+//router
+app.use("/api/users", userRouter)
+
+
+
+
+
+
 // connecting to mongo db
+const connect = ()=>{
+
+    mongoose.set("strictQuery",true)
+
+
+
+    mongoose.connect((process.env.MONGODB))
+    .then(()=>{
+        console.log("Database Connected")
+    })
+    .catch((error)=>{
+        throw error;
+    })
+
+}
 
 
 app.get('/', (req, res) => {
