@@ -11,7 +11,7 @@ const app = Express();
 
 dotenv.config();
 
-
+app.use(Express.json())
 
 //router
 app.use("/api/users", userRouter)
