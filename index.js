@@ -21,6 +21,17 @@ app.use("/api/comment", commentRouter)
 app.use("/api/auth",authRouter)
 
 
+app.use((error , req, res, next)=>{
+  const status = error.status || 500
+  const message = error.message || "something went wrong"
+  return res.status(status).json({
+    success:false,
+    status,
+    message
+  })
+})
+
+
 
 
 
