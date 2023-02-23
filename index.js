@@ -7,13 +7,14 @@ import postRouter from "./routes/posts.js"
 import likeRouter from "./routes/likes.js"
 import commentRouter from "./routes/comments.js"
 import authRouter from "./routes/auth.js"
+import cors from "cors"
 const app = Express();
 
 dotenv.config();
 
 app.use(Express.json())
 
-
+app.use(cors())
 app.use(cookieParser())
 //router
 app.use("/api/users", userRouter)
