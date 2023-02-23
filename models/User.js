@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    
     img:{
         type: String,
     },
@@ -25,6 +26,21 @@ const userSchema = new mongoose.Schema({
     friendList:{
         type:[String],
 
+    },
+    username:{
+        type:String,
+        required:true
+    },
+    coverImg:{
+        type:String
+    },
+    profilePic:{
+        type:String,
+        
+    },
+    city:{
+        type:String,
+        required:true
     }
 },
 {timestamps:true}

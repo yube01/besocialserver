@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+
 import User from "../models/User.js"
 import bcrypt from "bcryptjs"
 import { createError } from "../error.js"
@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken"
 
 export const login = async(req,res,next)=>{
     try {
-        const user = await User.findOne({name:req.body.name})
+        const user = await User.findOne({username:req.body.username})
         if(!user)
         return next(createError(404,"user not found"))
         const isCorrect = await bcrypt.compare(req.body.password,user.password)
@@ -29,6 +29,10 @@ export const login = async(req,res,next)=>{
 }
 
 export const logout  = (req,res)=>{
+    res.clearCookie("access granted",{
+        secure:true,
+        sameSite:"none"
+    }).status(200).json("user logged out")
     
 }
 
