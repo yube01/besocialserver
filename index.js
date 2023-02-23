@@ -1,6 +1,6 @@
 import  Express  from "express"
 import mongoose from "mongoose";
-
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv"
 import userRouter from "./routes/users.js"
 import postRouter from "./routes/posts.js"
@@ -13,6 +13,8 @@ dotenv.config();
 
 app.use(Express.json())
 
+
+app.use(cookieParser())
 //router
 app.use("/api/users", userRouter)
 app.use("/api/posts", postRouter)
