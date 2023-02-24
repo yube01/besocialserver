@@ -13,15 +13,16 @@ const app = Express();
 dotenv.config();
 
 app.use(Express.json())
+app.use((req,res,next)=>{
+  res.header("Access-Control-Allow-Credentials",true)
+  next()
+})
 
 app.use(cors({
   origin:"http://localhost:3000"
 }))
 app.use(cookieParser())
-app.use((req,res,next)=>{
-  res.header("Access-Control-Allow-Credentials",true)
-  next()
-})
+
 //router
 app.use("/api/users", userRouter)
 app.use("/api/posts", postRouter)
@@ -74,7 +75,7 @@ app.listen(5555, () => {
 
 
 // connecting to server
-app.listen(2200,()=>{
+app.listen(5500,()=>{
     connect()
     console.log("Server connected")
 })
